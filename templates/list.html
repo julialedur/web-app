@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<p>This is a list of hotels</p>
+<ul>
+  {% for hotel in hotels %}
+    <li><a href="{{ url_for('show', BBL=hotel.BBL) }}">{{ hotel.Company_Name }}</a></li>
+    {% endfor %}
+  </ul>
+
+  {% endblock %}
