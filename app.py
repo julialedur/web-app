@@ -11,12 +11,12 @@ class Hotel(db.Model):
     'autoload': True,
     'autoload_with': db.engine
   }
-  index = db.Column(db.String, primary_key=True)
+  BBL = db.Column(db.String, primary_key=True)
 
 @app.route("/")
 def hello():
-  return render_template("list.html")
-
+  hotels = Hotel.query.all()
+  return render_template("list.html", hotels=hotels)
 
 @app.route("/hotels/")
 def list():
@@ -28,11 +28,6 @@ def list():
 def show(BBL):
   hotel = Hotel.query.filter_by(BBL=BBL).first()
   return render_template("show.html", hotel=hotel)
-
-""" @app.route("/hotels/cool-fun-hotel/")
-def show():
-  hotel = Hotel.query.filter_by(index = 1).first()
-  return render_template("show.html", hotel=hotel) """
 
 
 if __name__ == "__main__":
